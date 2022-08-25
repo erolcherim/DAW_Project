@@ -9,7 +9,7 @@ namespace DAW_project.DAL.Models
         [Key, Column(Order = 1)]
         public int BranchId { get; set; }
         [Key, Column(Order = 2)]
-        public int CompanyId { get; set; }
+        public int ProductId { get; set; }
         [Key, Column(Order = 3)]
         public int CustomerId { get; set; }
 
