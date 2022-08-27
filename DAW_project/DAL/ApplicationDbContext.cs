@@ -14,6 +14,8 @@ namespace DAW_project.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             //Company has multiple Branches (1:m)
             modelBuilder.Entity<Company>()
                 .HasMany(company => company.Branches)
@@ -41,8 +43,6 @@ namespace DAW_project.DAL
                 .HasOne(sale => sale.Product)
                 .WithMany(product => product.Sales);
             //Customer is User (1:1) TODO later
-            
-            base.OnModelCreating(modelBuilder);
         }
           
     }
