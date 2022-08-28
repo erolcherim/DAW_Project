@@ -6,7 +6,7 @@ namespace DAW_Project.Repositories.GenericRepository
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly ApplicationDbContext _context;
-        protected readonly DbSet<TEntity> _table;
+        //protected readonly DbSet<TEntity> _table;
 
         public GenericRepository(ApplicationDbContext context)
         {
