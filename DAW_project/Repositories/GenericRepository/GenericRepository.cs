@@ -8,6 +8,7 @@ namespace DAW_Project.Repositories.GenericRepository
         protected readonly ApplicationDbContext _context;
         //protected readonly DbSet<TEntity> _table;
 
+        //TODO async tasks for CRUD
         public GenericRepository(ApplicationDbContext context)
         {
             _context = context;
