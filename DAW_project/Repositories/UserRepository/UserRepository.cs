@@ -13,7 +13,7 @@ namespace DAW_Project.Repositories.UserRepository
             await _context.Users.ToListAsync();
 
         public async Task<User> GetUserAndUserRoleById(int userId) =>
-            await _context.Users.Include(user => user.UserRoles).ThenInclude(userRole => userRole.Role).FirstOrDefaultAsync(u => u.UserId.Equals(userId));
+            await _context.Users.Include(user => user.UserRoles).ThenInclude(ur => ur.Role).FirstOrDefaultAsync(u => u.Id.Equals(userId));
 
         public async Task<User> GetUserByEmail(string email) =>
             await _context.Users.Where(user => user.Email.Equals(email)).FirstOrDefaultAsync();

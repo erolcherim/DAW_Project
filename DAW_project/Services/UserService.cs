@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DAW_Project.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IAuthWrapperRepository _repository;
         private readonly UserManager<User> _userManager;

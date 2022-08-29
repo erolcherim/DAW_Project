@@ -5,6 +5,8 @@ using DAW_Project.DAL.Models.Utils;
 using DAW_Project.DAL.Seeders;
 using DAW_Project.Repositories.AuthWrapperRepository;
 using DAW_Project.Repositories.ProductRepository;
+using DAW_Project.Repositories.UserRepository;
+using DAW_Project.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -90,8 +92,13 @@ builder.Services.AddAuthentication(auth =>
     };
 });
 
+//Services for AuthWrapper and UserService
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthWrapperRepository, AuthWrapperRepository>();
 //Add Service for SeedRoles
 builder.Services.AddScoped<InitialSeed>();
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 //Add dbcontext service
 string connectionString = builder.Configuration.GetConnectionString("Default");
