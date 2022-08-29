@@ -58,7 +58,5 @@ namespace DAW_Project.Controllers
             return Ok(new { token });
         }
 
-
-
     }
 }

@@ -110,7 +110,7 @@ namespace DAW_Project.Controllers
 
             if (branchInDb == null)
             {
-                return NotFound("Branch with specifieed id doesn't exist");
+                return NotFound("Branch with specified id doesn't exist");
             }
 
             await _unitOfWork.Branches.Delete(branchInDb);

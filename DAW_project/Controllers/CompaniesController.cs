@@ -9,6 +9,7 @@ using DAW_Project.DAL;
 using DAW_Project.DAL.Models;
 using DAW_Project.Repositories.UnitOfWork;
 using DAW_Project.DAL.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DAW_Project.Controllers
 {
@@ -89,13 +90,14 @@ namespace DAW_Project.Controllers
 
         // Delete: api/Companies/id
         [HttpDelete("{id}")]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteCompany(int id)
         {
             var companyInDb = await _unitOfWork.Companies.GetById(id);
 
             if (companyInDb == null)
             {
-                return NotFound("Company with specifieed id doesn't exist");
+                return NotFound("Company with specified id doesn't exist");
             }
 
             await _unitOfWork.Companies.Delete(companyInDb);
