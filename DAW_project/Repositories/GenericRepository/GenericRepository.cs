@@ -30,7 +30,7 @@ namespace DAW_Project.Repositories.GenericRepository
             return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetById(int id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }

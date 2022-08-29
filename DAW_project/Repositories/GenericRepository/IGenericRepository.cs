@@ -7,7 +7,7 @@
 
         //Read
         Task<List<TEntity>> GetAll();
-        Task<TEntity> GetByIdAsync(int id);
+        Task<TEntity> GetById(int id);
         //Task<TEntity> GetByNameAsync(string name);
 
         //Update

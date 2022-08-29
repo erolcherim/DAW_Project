@@ -40,7 +40,7 @@ namespace DAW_Project.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CompanyDTO>> GetCompany(int id)
         {
-            var result = await _unitOfWork.Companies.GetByIdAsync(id);
+            var result = await _unitOfWork.Companies.GetById(id);
 
             if (result == null)
             {
@@ -54,7 +54,7 @@ namespace DAW_Project.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCompany(int id, CompanyDTO company)
         {
-            var companyInDb = await _unitOfWork.Companies.GetByIdAsync(id);
+            var companyInDb = await _unitOfWork.Companies.GetById(id);
 
             if (companyInDb == null)
             {
@@ -71,7 +71,7 @@ namespace DAW_Project.Controllers
             return Ok();
         }
 
-        // POST: api/Jobs
+        // POST: api/Companies
         [HttpPost]
         public async Task<ActionResult<CompanyDTO>> PostCompany(CompanyDTO company)
         {
@@ -86,10 +86,12 @@ namespace DAW_Project.Controllers
             return Ok();
         }
 
+
+        // Delete: api/Companies/id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {
-            var companyInDb = await _unitOfWork.Companies.GetByIdAsync(id);
+            var companyInDb = await _unitOfWork.Companies.GetById(id);
 
             if (companyInDb == null)
             {
