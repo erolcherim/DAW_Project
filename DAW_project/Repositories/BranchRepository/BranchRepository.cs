@@ -1,4 +1,5 @@
 ﻿using DAW_Project.DAL;
+using DAW_Project.DAL.DTO;
 using DAW_Project.DAL.Models;
 using DAW_Project.Repositories.GenericRepository;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,12 @@ namespace DAW_Project.Repositories.BranchRepository
         public async Task<List<Branch>> GetBranchesByLocation(string location) =>
             await _context.Branches.Where(branch => branch.Location.Equals(location)).ToListAsync();
 
-
+        public async Task<List<BranchDTO>> GetBranchesByCompanyId(int id) =>
+            await _context
+            .Branches
+            .Include(x => x.Company)
+            .Where(x => x.Company.CompanyId == id)
+            .Select(x => new BranchDTO(x))
+            .ToListAsync();
     }
 }

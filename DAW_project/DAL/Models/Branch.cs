@@ -7,10 +7,10 @@ namespace DAW_Project.DAL.Models
     public class Branch
     {
         [Key]
-        public int BrachId { get; set; }
+        public int BranchId { get; set; }
         public string? BranchName { get; set; }
         public string? BranchManager { get; set; } 
-        public int NumberOfEmployees { get; set; } 
+        public int? NumberOfEmployees { get; set; } 
         public string? Location { get; set; }
         [ForeignKey("CompanyId")]
         public int CompanyId { get; set; }
