@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DAW_project.DAL.Models
+namespace DAW_Project.DAL.Models
 {
     [Table("Sale")]
     public class Sale
@@ -11,13 +11,13 @@ namespace DAW_project.DAL.Models
         [Key, Column(Order = 2)]
         public int ProductId { get; set; }
         [Key, Column(Order = 3)]
-        public int CustomerId { get; set; }
+        public int UserId { get; set; }
 
         [ForeignKey("BranchId")]
         public Branch? Branch { get; set; }
         [ForeignKey("ProductId")]
         public Product? Product { get; set; }
-        [ForeignKey("CustomerId")]
-        public Customer? Customer { get; set; }
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
     }
 }

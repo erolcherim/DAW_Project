@@ -1,4 +1,4 @@
-﻿using DAW_project.DAL;
+﻿using DAW_Project.DAL;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAW_Project.Repositories.GenericRepository

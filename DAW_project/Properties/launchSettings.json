@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "DAW_project": {
+    "DAW_Project": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

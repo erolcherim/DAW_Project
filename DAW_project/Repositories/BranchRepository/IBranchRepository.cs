@@ -1,4 +1,4 @@
-﻿using DAW_project.DAL.Models;
+﻿using DAW_Project.DAL.Models;
 using DAW_Project.Repositories.GenericRepository;
 
 namespace DAW_Project.Repositories.BranchRepository

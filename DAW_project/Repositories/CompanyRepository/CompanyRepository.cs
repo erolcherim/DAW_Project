@@ -1,5 +1,5 @@
-﻿using DAW_project.DAL;
-using DAW_project.DAL.Models;
+﻿using DAW_Project.DAL;
+using DAW_Project.DAL.Models;
 using DAW_Project.Repositories.GenericRepository;
 using Microsoft.EntityFrameworkCore;
 

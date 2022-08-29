@@ -1,16 +1,21 @@
-﻿using DAW_project.DAL.Models;
+﻿using DAW_Project.DAL.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAW_project.DAL
+namespace DAW_Project.DAL
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int,
+        IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, 
+        IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Branch>? Branches { get; set; }
         public DbSet<Company>? Companies { get; set; }
-        public DbSet<Customer>? Customers { get; set; } 
+        public DbSet<User>? Users { get; set; } 
         public DbSet<Product>? Products { get; set; }
         public DbSet<Sale>? Sales { get; set; }
+        public DbSet<SessionToken>? SessionTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +32,7 @@ namespace DAW_project.DAL
                     new
                     {
                         sale.BranchId,
-                        sale.CustomerId,
+                        sale.UserId,
                         sale.ProductId
                     });
 
@@ -36,13 +41,20 @@ namespace DAW_project.DAL
                 .WithMany(branch => branch.Sales);
 
             modelBuilder.Entity<Sale>()
-                .HasOne(sale => sale.Customer)
-                .WithMany(customer => customer.Sales);
+                .HasOne(sale => sale.User)
+                .WithMany(user => user.Sales);
 
             modelBuilder.Entity<Sale>()
                 .HasOne(sale => sale.Product)
                 .WithMany(product => product.Sales);
-            //Customer is User (1:1) TODO later
+
+            modelBuilder.Entity<UserRole>(ur =>
+            {
+                ur.HasKey(ur => new { ur.UserId, ur.RoleId });
+
+                ur.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(ur => ur.RoleId);
+                ur.HasOne(ur => ur.User).WithMany(u => u.UserRoles).HasForeignKey(ur => ur.UserId);
+            });
         }
           
     }

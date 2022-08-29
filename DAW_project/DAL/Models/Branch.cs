@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DAW_project.DAL.Models
+namespace DAW_Project.DAL.Models
 {
     [Table("Branch")]
     public class Branch

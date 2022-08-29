@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using DAW_project.DAL;
-using DAW_project.DAL.Models;
+using DAW_Project.DAL;
+using DAW_Project.DAL.Models;
 
 namespace DAW_Project.Controllers
 {
