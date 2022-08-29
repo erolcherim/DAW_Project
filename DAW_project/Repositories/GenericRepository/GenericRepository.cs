@@ -24,12 +24,12 @@ namespace DAW_Project.Repositories.GenericRepository
             _context.Set<TEntity>().AddRange(entities);
         }
 
-        public void Delete(TEntity entity)
+        public async Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
         }
 
-        public void DeleteRange(IEnumerable<TEntity> entities)
+        public async DeleteRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().RemoveRange(entities);
         }
@@ -49,12 +49,12 @@ namespace DAW_Project.Repositories.GenericRepository
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public void Update(TEntity entity)
+        public async Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
         }
 
-        public void UpdateRange(IEnumerable<TEntity> entity)
+        public async UpdateRange(IEnumerable<TEntity> entity)
         {
             _context.Set<TEntity>().UpdateRange(entity);
         }

@@ -28,12 +28,47 @@ namespace DAW_Project.Controllers
         public async Task<ActionResult<IEnumerable<CompanyDTO>>> GetCompanies()
         {
 
-          if (_unitOfWork.Companies == null)
-          {
-              return NotFound();
-          }
-            var companies = (await _unitOfWork.Companies.GetAll()).Select(a => new CompanyDTO(a)).ToList();
-            return companies;
+            if (_unitOfWork.Companies == null)
+            {
+                return NotFound();
+            }
+            var results = (await _unitOfWork.Companies.GetAll()).Select(a => new CompanyDTO(a)).ToList();
+            return results;
+        }
+
+        //GET: api/Companies/Id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CompanyDTO>> GetCompany(int id)
+        {
+            var result = await _unitOfWork.Companies.GetByIdAsync(id);
+
+            if (result == null)
+            {
+                return NotFound("Company with specified id doesn't exist");
+            }
+
+            return new CompanyDTO(result);
+        }
+
+        //PUT: api/Companies/id
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCompany(int id, CompanyDTO company)
+        {
+            var companyInDb = await _unitOfWork.Companies.GetByIdAsync(id);
+
+            if (companyInDb == null)
+            {
+                return NotFound("Company with specified id doesn't exist");
+            }
+
+            companyInDb.CompanyName = company.CompanyName;
+            companyInDb.CEO = company.CEO;
+            companyInDb.CompanyLogo = company.CompanyLogo;
+
+            await _unitOfWork.Companies.Update(companyInDb);
+            _unitOfWork.Save();
+
+            return Ok();
         }
     }
 

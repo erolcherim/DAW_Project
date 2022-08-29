@@ -12,12 +12,12 @@
         //Task<TEntity> GetByNameAsync(string name);
 
         //Update
-        void Update(TEntity entity);
-        void UpdateRange(IEnumerable<TEntity> entities);
+        Task Update(TEntity entity);
+        Task UpdateRange(IEnumerable<TEntity> entities);
 
         //Delete
-        void Delete(TEntity entity);
-        void DeleteRange(IEnumerable<TEntity> entities);
+        Task Delete(TEntity entity);
+        Task DeleteRange(IEnumerable<TEntity> entities);
 
         //Save
         Task<bool> SaveAsync();
