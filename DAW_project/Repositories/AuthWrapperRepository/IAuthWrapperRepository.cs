@@ -7,7 +7,6 @@ namespace DAW_Project.Repositories.AuthWrapperRepository
     {
         ISessionTokenRepository SessionToken { get; }
         IUserRepository User { get; }
-
         Task SaveAsync();
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAW_Project.Repositories.SaleRepository
 {
-    public class SaleRepository : GenericRepository<Sale>
+    public class SaleRepository : GenericRepository<Sale>, ISaleRepository
     {
         public SaleRepository(ApplicationDbContext context) : base(context) { }
 
@@ -20,6 +20,6 @@ namespace DAW_Project.Repositories.SaleRepository
 
         public async Task<List<Sale>> GetAllSalesThatContainProduct(int productId) =>
             await _context.Sales.Where(sale => sale.ProductId.Equals(productId)).ToListAsync();
-  
+
     }
 }
