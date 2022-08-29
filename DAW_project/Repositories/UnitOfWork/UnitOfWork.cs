@@ -44,6 +44,12 @@ namespace DAW_Project.Repositories.UnitOfWork
             private set;
         }
 
+        public ISaleRepository Sale
+        {
+            get;
+            private set;
+        }
+
         public void Dispose()
         {
             _context.Dispose();

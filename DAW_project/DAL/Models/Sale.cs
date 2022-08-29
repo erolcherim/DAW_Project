@@ -19,5 +19,6 @@ namespace DAW_Project.DAL.Models
         public Product? Product { get; set; }
         [ForeignKey("UserId")]
         public User? User { get; set; }
+        public int? value { get; set; }
     }
 }
