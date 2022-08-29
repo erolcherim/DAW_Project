@@ -15,52 +15,52 @@ namespace DAW_Project.Repositories.UnitOfWork
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            AuthWrapper = new AuthWrapperRepository.AuthWrapperRepository(_context); //not used = useless, maybe modify
-            Branch = new BranchRepository.BranchRepository(_context);
-            Company = new CompanyRepository.CompanyRepository(_context);
-            Product = new ProductRepository.ProductRepository(_context);
-            Sale = new SaleRepository.SaleRepository(_context);
-            User = new UserRepository.UserRepository(_context);
-            SessionToken = new SessionTokenRepository.SessionTokenRepository(_context);
+            AuthWrappers = new AuthWrapperRepository.AuthWrapperRepository(_context); //not used = useless, maybe modify
+            Branches = new BranchRepository.BranchRepository(_context);
+            Companies = new CompanyRepository.CompanyRepository(_context);
+            Products = new ProductRepository.ProductRepository(_context);
+            Sales = new SaleRepository.SaleRepository(_context);
+            Users = new UserRepository.UserRepository(_context);
+            SessionTokens = new SessionTokenRepository.SessionTokenRepository(_context);
         }
 
-        public IAuthWrapperRepository AuthWrapper
+        public IAuthWrapperRepository AuthWrappers
         {
             get;
             private set;
         }
 
-        public IBranchRepository Branch
+        public IBranchRepository Branches
         {
             get;
             private set;
         }
 
-        public ICompanyRepository Company
+        public ICompanyRepository Companies
         {
             get;
             private set;
         }
 
-        public IProductRepository Product
+        public IProductRepository Products
         {
             get;
             private set;
         }
 
-        public ISaleRepository Sale
+        public ISaleRepository Sales
         {
             get;
             private set;
         }
 
-        public IUserRepository User
+        public IUserRepository Users
         {
             get;
             private set;
         }
 
-        public ISessionTokenRepository SessionToken
+        public ISessionTokenRepository SessionTokens
         {
             get;
             private set;

@@ -10,13 +10,13 @@ namespace DAW_Project.Repositories.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IAuthWrapperRepository AuthWrapper { get; }
-        IBranchRepository Branch { get; }
-        ICompanyRepository Company { get; }
-        IProductRepository Product { get; }
-        ISaleRepository Sale { get; }
-        IUserRepository User { get; }
-        ISessionTokenRepository SessionToken { get; }
+        IAuthWrapperRepository AuthWrappers { get; }
+        IBranchRepository Branches { get; }
+        ICompanyRepository Companies { get; }
+        IProductRepository Products { get; }
+        ISaleRepository Sales { get; }
+        IUserRepository Users { get; }
+        ISessionTokenRepository SessionTokens { get; }
         int Save();
     }
 }

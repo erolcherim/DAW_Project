@@ -34,9 +34,9 @@ namespace DAW_Project.Repositories.GenericRepository
             _context.Set<TEntity>().RemoveRange(entities);
         }
 
-        public IQueryable<TEntity> GetAll()
+        public async Task<List<TEntity>> GetAll()
         {
-            return _context.Set<TEntity>().AsNoTracking();
+            return await _context.Set<TEntity>().ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(int id)

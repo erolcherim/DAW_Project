@@ -7,7 +7,7 @@
         void CreateRange(IEnumerable<TEntity> entities);
 
         //Read
-        IQueryable<TEntity> GetAll();
+        Task<List<TEntity>> GetAll();
         Task<TEntity> GetByIdAsync(int id);
         //Task<TEntity> GetByNameAsync(string name);
 
