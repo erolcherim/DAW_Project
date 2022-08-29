@@ -70,6 +70,37 @@ namespace DAW_Project.Controllers
 
             return Ok();
         }
+
+        // POST: api/Jobs
+        [HttpPost]
+        public async Task<ActionResult<CompanyDTO>> PostCompany(CompanyDTO company)
+        {
+            var companyToAdd = new Company();
+            companyToAdd.CompanyName = company.CompanyName;
+            companyToAdd.CEO = company.CEO;
+            companyToAdd.CompanyLogo = company.CompanyLogo;
+
+            await _unitOfWork.Companies.Create(companyToAdd);
+            _unitOfWork.Save();
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCompany(int id)
+        {
+            var companyInDb = await _unitOfWork.Companies.GetByIdAsync(id);
+
+            if (companyInDb == null)
+            {
+                return NotFound("Company with specifieed id doesn't exist");
+            }
+
+            await _unitOfWork.Companies.Delete(companyInDb);
+            _unitOfWork.Save();
+
+            return Ok();
+        }
     }
 
 }

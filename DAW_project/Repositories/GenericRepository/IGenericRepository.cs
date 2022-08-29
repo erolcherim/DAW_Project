@@ -3,8 +3,7 @@
     public interface IGenericRepository<TEntity>
     {
         //Create
-        void Create(TEntity entity);
-        void CreateRange(IEnumerable<TEntity> entities);
+        Task Create(TEntity entity);
 
         //Read
         Task<List<TEntity>> GetAll();
@@ -13,11 +12,9 @@
 
         //Update
         Task Update(TEntity entity);
-        Task UpdateRange(IEnumerable<TEntity> entities);
 
         //Delete
         Task Delete(TEntity entity);
-        Task DeleteRange(IEnumerable<TEntity> entities);
 
         //Save
         Task<bool> SaveAsync();

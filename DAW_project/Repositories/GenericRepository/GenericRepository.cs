@@ -14,24 +14,15 @@ namespace DAW_Project.Repositories.GenericRepository
             _context = context;
         }
 
-        public void Create(TEntity entity)
+        public async Task Create(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);        
+            await _context.Set<TEntity>().AddAsync(entity);   
         }
 
-        public void CreateRange(IEnumerable<TEntity> entities)
-        {
-            _context.Set<TEntity>().AddRange(entities);
-        }
-
-        public async Delete(TEntity entity)
+        public async Task Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
-        }
-
-        public async DeleteRange(IEnumerable<TEntity> entities)
-        {
-            _context.Set<TEntity>().RemoveRange(entities);
+            await Task.CompletedTask;
         }
 
         public async Task<List<TEntity>> GetAll()
@@ -49,14 +40,11 @@ namespace DAW_Project.Repositories.GenericRepository
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
+            await Task.CompletedTask;
         }
 
-        public async UpdateRange(IEnumerable<TEntity> entity)
-        {
-            _context.Set<TEntity>().UpdateRange(entity);
-        }
     }
 }
