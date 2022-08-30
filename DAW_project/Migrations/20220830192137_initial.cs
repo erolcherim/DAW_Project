@@ -5,27 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAW_Project.Migrations
 {
-    public partial class user : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Sale_Customer_CustomerId",
-                table: "Sale");
-
-            migrationBuilder.DropTable(
-                name: "Customer");
-
-            migrationBuilder.RenameColumn(
-                name: "CustomerId",
-                table: "Sale",
-                newName: "UserId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Sale_CustomerId",
-                table: "Sale",
-                newName: "IX_Sale_UserId");
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -47,7 +30,6 @@ namespace DAW_Project.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: true),
@@ -69,6 +51,36 @@ namespace DAW_Project.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Company",
+                columns: table => new
+                {
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CEO = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyLogo = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Company", x => x.CompanyId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PricePerUnit = table.Column<int>(type: "int", nullable: true),
+                    IsAvaiable = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,6 +208,64 @@ namespace DAW_Project.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Branch",
+                columns: table => new
+                {
+                    BranchId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BranchName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BranchManager = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumberOfEmployees = table.Column<int>(type: "int", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Branch", x => x.BranchId);
+                    table.ForeignKey(
+                        name: "FK_Branch_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Company",
+                        principalColumn: "CompanyId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sale",
+                columns: table => new
+                {
+                    SaleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: true),
+                    Value = table.Column<int>(type: "int", nullable: true),
+                    ProductQuantity = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sale", x => x.SaleId);
+                    table.ForeignKey(
+                        name: "FK_Sale_AspNetUsers_Id",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Sale_Branch_BranchId",
+                        column: x => x.BranchId,
+                        principalTable: "Branch",
+                        principalColumn: "BranchId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sale_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -236,25 +306,33 @@ namespace DAW_Project.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Branch_CompanyId",
+                table: "Branch",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sale_BranchId",
+                table: "Sale",
+                column: "BranchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sale_Id",
+                table: "Sale",
+                column: "Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sale_ProductId",
+                table: "Sale",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SessionTokens_UserId",
                 table: "SessionTokens",
                 column: "UserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Sale_AspNetUsers_UserId",
-                table: "Sale",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Sale_AspNetUsers_UserId",
-                table: "Sale");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -271,47 +349,25 @@ namespace DAW_Project.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Sale");
+
+            migrationBuilder.DropTable(
                 name: "SessionTokens");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Branch");
+
+            migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.RenameColumn(
-                name: "UserId",
-                table: "Sale",
-                newName: "CustomerId");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Sale_UserId",
-                table: "Sale",
-                newName: "IX_Sale_CustomerId");
-
-            migrationBuilder.CreateTable(
-                name: "Customer",
-                columns: table => new
-                {
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Age = table.Column<int>(type: "int", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customer", x => x.CustomerId);
-                });
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Sale_Customer_CustomerId",
-                table: "Sale",
-                column: "CustomerId",
-                principalTable: "Customer",
-                principalColumn: "CustomerId",
-                onDelete: ReferentialAction.Cascade);
+            migrationBuilder.DropTable(
+                name: "Company");
         }
     }
 }

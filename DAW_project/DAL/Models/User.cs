@@ -8,8 +8,6 @@ namespace DAW_Project.DAL.Models
     public class User : IdentityUser<int>
     {
         public User() : base() { }
-        [Key]
-        public int UserId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int? Age { get; set; }

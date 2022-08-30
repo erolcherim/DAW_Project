@@ -91,6 +91,7 @@ builder.Services.AddScoped<IAuthWrapperRepository, AuthWrapperRepository>();
 //Add Service for SeedRoles
 builder.Services.AddScoped<InitialSeed>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<ISaleService, SaleService>();
 
 //Add dbcontext service
 string connectionString = builder.Configuration.GetConnectionString("Default");

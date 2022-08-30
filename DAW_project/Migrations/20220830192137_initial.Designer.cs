@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAW_Project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220829185305_fixed attirbutes")]
-    partial class fixedattirbutes
+    [Migration("20220830192137_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,26 +130,37 @@ namespace DAW_Project.Migrations
 
             modelBuilder.Entity("DAW_Project.DAL.Models.Sale", b =>
                 {
-                    b.Property<int>("BranchId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(3);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
-
-                    b.Property<int?>("value")
+                    b.Property<int>("SaleId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.HasKey("BranchId", "UserId", "ProductId");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"), 1L, 1);
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("SaleId");
+
+                    b.HasIndex("BranchId");
+
+                    b.HasIndex("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Sale");
                 });
@@ -232,9 +243,6 @@ namespace DAW_Project.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -375,15 +383,13 @@ namespace DAW_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DAW_Project.DAL.Models.User", "User")
+                        .WithMany("Sales")
+                        .HasForeignKey("Id");
+
                     b.HasOne("DAW_Project.DAL.Models.Product", "Product")
                         .WithMany("Sales")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DAW_Project.DAL.Models.User", "User")
-                        .WithMany("Sales")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

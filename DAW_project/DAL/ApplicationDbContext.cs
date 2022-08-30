@@ -27,14 +27,14 @@ namespace DAW_Project.DAL
                 .WithOne(branch => branch.Company);
 
             //Multiple Customers buy multiple Producst from multiple Branches (m:m:m)
-            modelBuilder.Entity<Sale>()
-                .HasKey(sale =>
-                    new
-                    {
-                        sale.BranchId,
-                        sale.UserId,
-                        sale.ProductId
-                    });
+            //modelBuilder.Entity<Sale>()
+            //    .HasKey(sale =>
+            //        new
+            //        {
+            //            sale.BranchId,
+            //            sale.UserId,
+            //            sale.ProductId
+            //        });
 
             modelBuilder.Entity<Sale>()
                 .HasOne(sale => sale.Branch)
@@ -55,6 +55,7 @@ namespace DAW_Project.DAL
                 ur.HasOne(ur => ur.Role).WithMany(r => r.UserRoles).HasForeignKey(ur => ur.RoleId);
                 ur.HasOne(ur => ur.User).WithMany(u => u.UserRoles).HasForeignKey(ur => ur.UserId);
             });
+
         }
           
     }

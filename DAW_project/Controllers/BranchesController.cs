@@ -90,6 +90,7 @@ namespace DAW_Project.Controllers
             return Ok();
         }
 
+        // GET: api/Branches/get-join-by-id
         [HttpGet("get-join-by-id")]
         public async Task<IActionResult> GetBranchesByCompany(int id)
         {

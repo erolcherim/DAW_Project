@@ -28,7 +28,6 @@ namespace DAW_Project.Controllers
         public async Task<IActionResult> Register([FromBody] UserRegisterDTO dto)
         {
             var user = await _userManager.FindByEmailAsync(dto.Email);
-
             if (user != null)
             {
                 return BadRequest("The user already exists!");

@@ -13,7 +13,7 @@ namespace DAW_Project.Repositories.SaleRepository
             await _context.Sales.ToListAsync();
 
         public async Task<List<Sale>> GetAllSalesWithValueHigherThan(int value) =>
-            await _context.Sales.Where(sale => sale.value > value).ToListAsync();
+            await _context.Sales.Where(sale => sale.Value > value).ToListAsync();
 
         public async Task<List<Sale>> GetAllSalesDoneByUser(int userId) =>
             await _context.Sales.Where(sale => sale.UserId.Equals(userId)).ToListAsync();
