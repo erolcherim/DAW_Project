@@ -1,4 +1,5 @@
 ﻿using DAW_Project.DAL;
+using DAW_Project.DAL.DTO;
 using DAW_Project.DAL.Models;
 using DAW_Project.Repositories.GenericRepository;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,14 @@ namespace DAW_Project.Repositories.ProductRepository
 
         public async Task<Product> GetProductByProductName(string productName) =>
             await _context.Products.Where(product => product.ProductName.Equals(productName)).FirstOrDefaultAsync();
+
+        public async Task<List<ProductDTO>> GetAllProductsByValueDescending() =>
+                 await _context
+                .Products
+                .Where(x => x.PricePerUnit > 0)
+                .OrderByDescending(x => x.PricePerUnit)
+                .Select(x => new ProductDTO(x))
+                .ToListAsync();
 
     }
 }

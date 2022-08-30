@@ -9,6 +9,7 @@ using DAW_Project.DAL;
 using DAW_Project.DAL.Models;
 using DAW_Project.Repositories.UnitOfWork;
 using DAW_Project.DAL.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DAW_Project.Controllers
 {
@@ -25,7 +26,7 @@ namespace DAW_Project.Controllers
 
         // GET: api/Branches
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BranchDTO>>> GetCompanies()
+        public async Task<ActionResult<IEnumerable<BranchDTO>>> GetBranches()
         {
 
             if (_unitOfWork.Branches == null)
@@ -38,7 +39,7 @@ namespace DAW_Project.Controllers
 
         //GET: api/Branches/Id
         [HttpGet("{id}")]
-        public async Task<ActionResult<BranchDTO>> GetCompany(int id)
+        public async Task<ActionResult<BranchDTO>> GetBranch(int id)
         {
             var result = await _unitOfWork.Branches.GetById(id);
 
@@ -52,7 +53,7 @@ namespace DAW_Project.Controllers
 
         //PUT: api/Branches/id
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompany(int id, BranchDTO branch)
+        public async Task<IActionResult> PutBranch(int id, BranchDTO branch)
         {
             var branchInDb = await _unitOfWork.Branches.GetById(id);
 
@@ -75,7 +76,7 @@ namespace DAW_Project.Controllers
 
         // POST: api/Branches
         [HttpPost]
-        public async Task<ActionResult<BranchDTO>> PostCompany(BranchDTO branch)
+        public async Task<ActionResult<BranchDTO>> PostBranch(BranchDTO branch)
         {
             var branchToAdd = new Branch();
             branchToAdd.BranchName = branch.BranchName;
@@ -104,6 +105,7 @@ namespace DAW_Project.Controllers
 
         // Delete: api/Branches/id
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteBranch(int id)
         {
             var branchInDb = await _unitOfWork.Branches.GetById(id);

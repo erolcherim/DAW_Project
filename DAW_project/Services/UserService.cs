@@ -15,7 +15,8 @@ namespace DAW_Project.Services
         private readonly IAuthWrapperRepository _repository;
         private readonly UserManager<User> _userManager;
 
-        public UserService(IAuthWrapperRepository repository, UserManager<User> userManager)        {
+        public UserService(IAuthWrapperRepository repository, UserManager<User> userManager)
+        {
             _repository = repository;
             _userManager = userManager;
         }
