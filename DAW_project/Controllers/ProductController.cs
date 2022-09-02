@@ -45,7 +45,7 @@ namespace DAW_Project.Controllers
             return new ProductDTO(result);
         }
 
-        [HttpGet("get-join-by-id")]
+        [HttpGet("get-products-descending")]
         public async Task<IActionResult> GetProductsByValueDescending()
         {
             var result = await _unitOfWork.Products.GetAllProductsByValueDescending();
