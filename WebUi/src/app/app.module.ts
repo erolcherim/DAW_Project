@@ -8,8 +8,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import { RegisterComponent } from './register/register.component';
-import { UserSalesComponent } from './user-sales/user-sales.component';
 import { SalesComponent } from './sales/sales.component';
+import { CompanyComponent } from './company/company.component';
+
+import { CompanyService } from "./services/company.service";
+import { AddEditCompanyComponent } from './company/add-edit-company/add-edit-company.component';
+import { DeleteCompanyComponent } from './company/delete-company/delete-company.component';
+import { ShowCompanyComponent } from './company/show-company/show-company.component';
+
 
 
 @NgModule({
@@ -17,8 +23,11 @@ import { SalesComponent } from './sales/sales.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UserSalesComponent,
-    SalesComponent
+    SalesComponent,
+    CompanyComponent,
+    AddEditCompanyComponent,
+    DeleteCompanyComponent,
+    ShowCompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +37,7 @@ import { SalesComponent } from './sales/sales.component';
     CommonModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

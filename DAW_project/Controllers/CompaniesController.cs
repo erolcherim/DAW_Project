@@ -90,7 +90,7 @@ namespace DAW_Project.Controllers
 
         // Delete: api/Companies/id
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> DeleteCompany(int id)
         {
             var companyInDb = await _unitOfWork.Companies.GetById(id);

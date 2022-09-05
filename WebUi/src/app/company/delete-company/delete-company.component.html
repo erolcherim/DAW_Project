@@ -1,0 +1,12 @@
+<form>
+  <div class="modal-body">
+    <p>Are you sure you want to delete {{companyName}} company?</p>
+  </div>
+  <div class="alert alert-danger" role="alert" id="delete-error-alert"></div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="closeModal()">Cancel</button>
+    <button (click)="deleteCompany()" type="button" class="btn btn-danger"
+            >Yes</button>
+  </div>
+</form>

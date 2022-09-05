@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       }
       this.service.ProceedRegister(user).subscribe(res =>
       {
-        var showRegisterAlert = document.getElementById('register-succes-alert');
+        var showRegisterAlert = document.getElementById('register-success-alert');
         if (showRegisterAlert) {
           showRegisterAlert.style.display = "block";
         }
