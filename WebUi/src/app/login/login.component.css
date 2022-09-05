@@ -1,0 +1,29 @@
+.center{
+  position:relative;
+  width:500px;
+  top:30vh;
+}
+
+#tab-login{
+  background-color:#00CED1;
+}
+
+#tab-register{
+  color:#00CED1;
+}
+
+#signInButton{
+  background-color:#00CED1;
+  border:#00CED1;
+}
+
+.link-decoration{
+  color:#00CED1;
+}
+
+#title-text{
+  font-size:50px;
+}
+
+
+

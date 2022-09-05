@@ -1,0 +1,83 @@
+<div class="container-fluid center"><p id="title-text">Register</p></div>
+<div class="container-fluid center">
+  <!-- Pills navs -->
+  <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="tab-login" data-mdb-toggle="pill" routerLink="/login" role="tab"
+         aria-controls="pills-login" aria-selected="true">Login</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="tab-register" data-mdb-toggle="pill" routerLink="/register" role="tab"
+         aria-controls="pills-register" aria-selected="false">Register</a>
+    </li>
+  </ul>
+  <!-- Pills navs -->
+
+  <!-- Pills content -->
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+      <form>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="loginEmail">Email</label>
+          <input type="text" id="loginEmail" class="form-control"
+                 [(ngModel)]="email" name="email" placeholder="username@domain.com"/>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-control"
+                 [(ngModel)]="password" name="password" placeholder="password"/>
+        </div>
+
+        <!-- Password confirmation -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="loginPassword">Confirm password</label>
+          <input type="password" id="confirmPassword" class="form-control"
+                 [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="confirm password"/>
+        </div>
+
+        <!-- First Name input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="firstName">First Name</label>
+          <input type="text" id="firstName" class="form-control"
+                 [(ngModel)]="firstName" name="email" placeholder="John"/>
+        </div>
+
+        <!-- Last Name input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="form-control"
+                 [(ngModel)]="lastName" name="email" placeholder="Smith"/>
+        </div>
+
+        <div class="form-outline mb-4">
+          <label class="form-label" for="phoneNumber">Phone Number</label>
+          <input type="form-label" id="phoneNumber" class="form-control"
+                 [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="phone number"/>
+        </div>
+
+        <div class="form-outline mb-4">
+          <label class="form-label" for="age">Age</label>
+          <input type="form-label" id="age" class="form-control"
+                 [(ngModel)]="age" name="age" placeholder="age"/>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4"
+                (click)="ProceedRegister()">Sign up</button>
+
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Already a member? <a class="link-decoration" routerLink="/login">Login</a></p>
+        </div>
+      </form>
+      <div class="alert alert-success" role="alert" id="register-succes-alert">
+        Registered succesfully!
+      </div>
+      <div class="alert alert-danger" role="alert" id="register-fail-alert"></div>
+    </div>
+  </div>
+</div>

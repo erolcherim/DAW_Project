@@ -20,6 +20,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 //Swagger config for OpenApi
 builder.Services.AddSwaggerGen(options =>
 {
@@ -97,6 +99,17 @@ builder.Services.AddTransient<ISaleService, SaleService>();
 string connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<ApplicationDbContext>(context => context.UseSqlServer(connectionString));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: myAllowSpecificOrigins,
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -116,6 +129,8 @@ using (var scope = app.Services.CreateScope())
 
 
 app.UseHttpsRedirection();
+
+app.UseCors(myAllowSpecificOrigins);
 
 app.UseAuthentication();
 
