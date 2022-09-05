@@ -5,7 +5,7 @@
 - [ ] Cel putin 3 servicii conectate la serverul din .Net . Afisarea de date din servicii in componente. (1p) (<- 1/3)
 - [ ] Cel putin 2 formulare. (Reactive forms - inafara de login/register) (0.5 p)  
 - [ ] Implementarea metodelor de comunicare intre componente. (neaparat sa fie folosita macar o data comunicarea printr-un serviciu) (0.5p)  
-- [X] Cel putin 1 directiva. (pe langa cea facuta la laborator) (0.25p) (<-ngmodel)  
+- [X] Cel putin 1 directiva. (pe langa cea facuta la laborator) (0.25p) (<-ngmodel si ngfor)  
 - [ ] Cel putin 1 pipe. (0.25p)  
 - [X] Register + Login + Implementare Guard. (1p)   
   
